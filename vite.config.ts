@@ -7,9 +7,5 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
-  // Menonaktifkan plugin cloudflare bawaan agar kompatibel dengan Vercel
   cloudflare: false,
-  tanstackStart: {
-    server: { entry: "server" },
-  },
 });
