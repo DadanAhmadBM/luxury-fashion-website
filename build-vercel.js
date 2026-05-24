@@ -39,18 +39,51 @@ copyDir('dist/client', `${outDir}/static`);
 
 // 4. Create function index.func config
 fs.writeFileSync(`${outDir}/functions/index.func/.vc-config.json`, JSON.stringify({
-  runtime: "edge",
-  entrypoint: "index.js"
+  runtime: "nodejs20.x",
+  handler: "index.js",
+  launcherType: "Nodejs"
 }));
 
 // 5. Copy dist/server into the function directory so it's self-contained
 copyDir('dist/server', `${outDir}/functions/index.func/dist/server`);
 
-// 6. Create edge function entrypoint
+// 6. Create Node.js function entrypoint
 fs.writeFileSync(`${outDir}/functions/index.func/index.js`, `
 import server from "./dist/server/server.js";
-export default async function handler(request) {
-  return server.fetch(request);
+
+export default async function handler(req, res) {
+  const protocol = req.headers['x-forwarded-proto'] || 'http';
+  const url = new URL(req.url, \`\${protocol}://\${req.headers.host}\`);
+  
+  const headers = new Headers();
+  for (const key in req.headers) {
+    if (req.headers[key]) headers.append(key, req.headers[key]);
+  }
+  
+  const requestInit = { method: req.method, headers };
+  
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    requestInit.body = req;
+    requestInit.duplex = 'half';
+  }
+  
+  const request = new Request(url.href, requestInit);
+  const response = await server.fetch(request);
+  
+  res.statusCode = response.status;
+  response.headers.forEach((value, key) => {
+    res.setHeader(key, value);
+  });
+  
+  if (response.body) {
+    const reader = response.body.getReader();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      res.write(value);
+    }
+  }
+  res.end();
 }
 `);
 
