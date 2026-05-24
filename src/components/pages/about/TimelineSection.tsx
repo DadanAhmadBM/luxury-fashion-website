@@ -1,6 +1,6 @@
 const timeline = [
-  ["1999", "Aurélien Ciel apprentices at a Paris atelier."],
-  ["2007", "Founds Maison Ciel from a single studio in the Marais."],
+  ["1999", "Aurélien L'Allure apprentices at a Paris atelier."],
+  ["2007", "Founds L'Allure from a single studio in the Marais."],
   ["2012", "First runway show. Defines the house language."],
   ["2016", "Opens flagship store on Rue de Seine."],
   ["2020", "Receives the Andam fashion prize."],

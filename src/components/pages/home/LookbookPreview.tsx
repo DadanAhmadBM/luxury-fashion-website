@@ -16,7 +16,9 @@ export function LookbookPreview() {
           <img src={look1} alt="Look 01" width={896} height={1280} loading="lazy"
                className="img-hover w-full h-[60svh] md:h-[90svh] object-cover" />
         </div>
-        <div className="col-span-6 md:col-span-5 flex flex-col gap-4 md:gap-6">
+        
+        {/* --- Mobile Layout (Exact Original) --- */}
+        <div className="col-span-6 md:hidden flex flex-col gap-4">
           <div className="group relative overflow-hidden flex-1">
             <img src={look2} alt="Look 02" width={896} height={1280} loading="lazy"
                  className="img-hover w-full h-full object-cover" />
@@ -28,6 +30,20 @@ export function LookbookPreview() {
         </div>
         <div className="col-span-6 md:hidden group relative overflow-hidden">
           <img src={look4} alt="Look 04" loading="lazy" className="w-full h-full object-cover" />
+        </div>
+
+        {/* --- Desktop Layout (2x2 Asymmetrical Grid) --- */}
+        <div className="hidden md:block col-span-5 group relative overflow-hidden">
+          <img src={look2} alt="Look 02" width={896} height={1280} loading="lazy"
+               className="img-hover w-full h-[90svh] object-cover" />
+        </div>
+        <div className="hidden md:block col-span-7 group relative overflow-hidden">
+          <img src={look4} alt="Look 04" loading="lazy" 
+               className="img-hover w-full h-[70svh] object-cover" />
+        </div>
+        <div className="hidden md:block col-span-5 group relative overflow-hidden">
+          <img src={look3} alt="Look 03" width={896} height={1280} loading="lazy"
+               className="img-hover w-full h-[70svh] object-cover" />
         </div>
       </div>
       <div className="caption mt-8">01–24 Looks · Persona · Spring/Summer 2026</div>

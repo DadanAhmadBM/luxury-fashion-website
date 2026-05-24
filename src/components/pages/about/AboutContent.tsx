@@ -6,7 +6,7 @@ export function AboutContent() {
   return (
     <section className="px-5 md:px-12 py-24 md:py-32 bg-off">
       <h2 className="section-title text-4xl md:text-7xl mb-16">
-        Ciel is <br /> Aurélien Ciel.
+        L'Allure is <br /> Aurélien L'Allure.
       </h2>
       <div className="grid grid-cols-12 gap-6">
         <img src={designer} alt="Designer portrait" loading="lazy"

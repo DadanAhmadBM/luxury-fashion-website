@@ -11,9 +11,9 @@ import { NewsletterSection } from "@/components/pages/home/NewsletterSection";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Maison Ciel — Editorial Fashion House" },
-      { name: "description", content: "A digital fashion editorial — lookbook, campaigns, and the archive of Maison Ciel." },
-      { property: "og:title", content: "Maison Ciel — Editorial Fashion House" },
+      { title: "L'Allure — Editorial Fashion House" },
+      { name: "description", content: "A digital fashion editorial — lookbook, campaigns, and the archive of L'Allure." },
+      { property: "og:title", content: "L'Allure — Editorial Fashion House" },
       { property: "og:description", content: "A digital fashion editorial." },
     ],
   }),
@@ -25,7 +25,7 @@ function Index() {
     <Layout>
       <HeroSection />
       <CampaignTeaser />
-      <Marquee text="Maison Ciel · Spring Editorial · N°07" />
+      <Marquee text="L'Allure · Spring Editorial · N°07" />
       <LookbookPreview />
       <ArchiveTeaser />
       <ManifestoSection />

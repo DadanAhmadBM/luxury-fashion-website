@@ -8,11 +8,11 @@ export function ContactSection() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-[11px] tracking-[0.15em] uppercase">
         <div>
           <div className="text-paper/60 mb-3">Press</div>
-          <div>press@maisonciel.com</div>
+          <div>press@maisonL'Allure.com</div>
         </div>
         <div>
           <div className="text-paper/60 mb-3">Studio</div>
-          <div>studio@maisonciel.com</div>
+          <div>studio@maisonL'Allure.com</div>
         </div>
         <div>
           <div className="text-paper/60 mb-3">Address</div>

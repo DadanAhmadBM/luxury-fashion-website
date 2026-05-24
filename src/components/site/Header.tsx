@@ -31,7 +31,7 @@ export function Header() {
       >
         <div className="flex items-center justify-between px-5 md:px-12 py-5 hairline border-b border-transparent">
           <Link to="/" className="font-display font-black tracking-[0.2em] text-[13px] uppercase">
-            MAISON / CIEL
+            L'ALLURE
           </Link>
           <nav className="hidden md:flex items-center gap-10">
             {links.map((l) => (
@@ -59,7 +59,7 @@ export function Header() {
       {open && (
         <div className="fixed inset-0 z-[60] bg-ink text-paper flex flex-col md:hidden">
           <div className="flex items-center justify-between px-5 py-5">
-            <span className="text-[13px] tracking-[0.2em] uppercase font-black">MAISON / CIEL</span>
+            <span className="text-[13px] tracking-[0.2em] uppercase font-black">L'ALLURE</span>
             <button onClick={() => setOpen(false)} className="text-2xl" aria-label="Close menu">×</button>
           </div>
           <nav className="flex-1 flex flex-col justify-center gap-8 px-8">

@@ -36,14 +36,14 @@ export function Footer() {
           <div>
             <div className="caption !text-mid mb-6">Contact</div>
             <ul className="space-y-2 text-[11px] tracking-[0.15em] uppercase">
-              <li>press@maisonciel.com</li>
-              <li>studio@maisonciel.com</li>
+              <li>press@maisonL'Allure.com</li>
+              <li>studio@maisonL'Allure.com</li>
               <li>+33 1 42 00 00 00</li>
             </ul>
           </div>
         </div>
         <div className="mt-16 pt-6 border-t border-paper/15 flex justify-between text-[10px] tracking-[0.2em] uppercase text-paper/60">
-          <span>© 2026 Maison Ciel</span>
+          <span>© 2026 L'Allure</span>
           <span>Privacy · Terms</span>
         </div>
       </div>

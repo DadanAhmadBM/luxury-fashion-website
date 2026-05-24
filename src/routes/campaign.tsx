@@ -9,8 +9,8 @@ import { RelatedCampaigns } from "@/components/pages/campaign/RelatedCampaigns";
 export const Route = createFileRoute("/campaign")({
   head: () => ({
     meta: [
-      { title: "Persona, Reframed — Campaign S/S 2026 · Maison Ciel" },
-      { name: "description", content: "A study in surface and shadow. The Spring/Summer 2026 campaign by Maison Ciel." },
+      { title: "Persona, Reframed — Campaign S/S 2026 · L'Allure" },
+      { name: "description", content: "A study in surface and shadow. The Spring/Summer 2026 campaign by L'Allure." },
       { property: "og:title", content: "Persona, Reframed — Campaign S/S 2026" },
       { property: "og:description", content: "A study in surface and shadow." },
     ],

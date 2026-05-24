@@ -6,13 +6,13 @@ export function AboutHero() {
     <section className="relative px-5 md:px-12 pt-40 pb-24 grid grid-cols-12 gap-6">
       <div className="col-span-12 md:col-span-7">
         <h1 className="display text-7xl md:text-[12rem] leading-[0.88]">
-          Know <br /> ciel.
+          Know <br /> L'Allure.
         </h1>
       </div>
       <div className="col-span-12 md:col-span-5 md:pt-32">
         <div className="caption mb-4">The Studio</div>
         <p className="text-base leading-[1.7] text-ink/80 mb-4">
-          Maison Ciel is the studio of designer Aurélien Ciel — a small
+          L'Allure is the studio of designer Aurélien L'Allure — a small
           atelier in Paris that produces two collections a year and
           nothing else.
         </p>
