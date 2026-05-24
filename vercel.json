@@ -1,6 +1,11 @@
 {
   "framework": "vite",
   "outputDirectory": "dist/client",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/assets/(.*)",
