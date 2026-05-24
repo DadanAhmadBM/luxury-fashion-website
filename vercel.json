@@ -1,5 +1,14 @@
 {
-  "framework": null,
-  "buildCommand": "npm run build",
-  "installCommand": "npm install"
+  "framework": "vite",
+  "outputDirectory": "dist/client",
+  "rewrites": [
+    {
+      "source": "/assets/(.*)",
+      "destination": "/assets/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api/index.js"
+    }
+  ]
 }
