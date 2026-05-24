@@ -1,1 +1,7 @@
-{"runtime":"nodejs20.x","handler":"index.js","launcherType":"Nodejs"}
+{
+  "runtime": "nodejs20.x",
+  "handler": "index.js",
+  "launcherType": "Nodejs",
+  "shouldAddHelpers": true,
+  "supportsResponseStreaming": true
+}

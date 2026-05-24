@@ -1,19 +1,4 @@
 {
-  "framework": "vite",
-  "outputDirectory": "dist/client",
-  "functions": {
-    "api/index.js": {
-      "includeFiles": "dist/**"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/assets/(.*)",
-      "destination": "/assets/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/api/index.js"
-    }
-  ]
+  "buildCommand": "npm run build",
+  "installCommand": "npm install"
 }
