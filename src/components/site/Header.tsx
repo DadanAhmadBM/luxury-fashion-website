@@ -1,5 +1,6 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Menu } from "lucide-react";
 
 const links = [
   { to: "/about", label: "About" },
@@ -11,6 +12,15 @@ const links = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  const pathname = location.pathname;
+  const isDarkNavbarText = 
+    pathname.startsWith('/about') || 
+    pathname.startsWith('/collections') || 
+    pathname.startsWith('/lookbook');
+
+  const textColorClass = (isDarkNavbarText || scrolled) ? "text-ink" : "text-white";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -29,7 +39,7 @@ export function Header() {
           backgroundColor: scrolled ? "color-mix(in oklab, var(--color-paper) 92%, transparent)" : "transparent",
         }}
       >
-        <div className="flex items-center justify-between px-5 md:px-12 py-5 hairline border-b border-transparent">
+        <div className={`flex items-center justify-between px-5 md:px-12 py-5 hairline border-b border-transparent transition-colors duration-300 ${textColorClass}`}>
           <Link to="/" className="font-display font-black tracking-[0.2em] text-[13px] uppercase">
             L'ALLURE
           </Link>
@@ -47,11 +57,11 @@ export function Header() {
             <button aria-label="Search" className="text-[12px] tracking-[0.2em] uppercase">⌕</button>
           </div>
           <button
-            className="md:hidden text-[12px] tracking-[0.2em] uppercase"
+            className="md:hidden"
             onClick={() => setOpen(true)}
             aria-label="Open menu"
           >
-            Menu
+            <Menu size={24} strokeWidth={1.5} />
           </button>
         </div>
       </header>
