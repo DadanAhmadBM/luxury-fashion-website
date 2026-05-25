@@ -10447,12 +10447,12 @@ var require_with_selector_production = __commonJS({
     }
     var objectIs = "function" === typeof Object.is ? Object.is : is;
     var useSyncExternalStore = shim.useSyncExternalStore;
-    var useRef8 = React4.useRef;
+    var useRef9 = React4.useRef;
     var useEffect8 = React4.useEffect;
     var useMemo4 = React4.useMemo;
     var useDebugValue = React4.useDebugValue;
     exports.useSyncExternalStoreWithSelector = function(subscribe2, getSnapshot, getServerSnapshot, selector, isEqual) {
-      var instRef = useRef8(null);
+      var instRef = useRef9(null);
       if (null === instRef.current) {
         var inst = { hasValue: false, value: null };
         instRef.current = inst;
@@ -10514,9 +10514,9 @@ var require_with_selector_development = __commonJS({
         return x3 === y3 && (0 !== x3 || 1 / x3 === 1 / y3) || x3 !== x3 && y3 !== y3;
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React4 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim.useSyncExternalStore, useRef8 = React4.useRef, useEffect8 = React4.useEffect, useMemo4 = React4.useMemo, useDebugValue = React4.useDebugValue;
+      var React4 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim.useSyncExternalStore, useRef9 = React4.useRef, useEffect8 = React4.useEffect, useMemo4 = React4.useMemo, useDebugValue = React4.useDebugValue;
       exports.useSyncExternalStoreWithSelector = function(subscribe2, getSnapshot, getServerSnapshot, selector, isEqual) {
-        var instRef = useRef8(null);
+        var instRef = useRef9(null);
         if (null === instRef.current) {
           var inst = { hasValue: false, value: null };
           instRef.current = inst;
@@ -12504,6 +12504,36 @@ var init_RouterProvider = __esm({
   }
 });
 
+// node_modules/@tanstack/react-router/dist/esm/useLocation.js
+function useLocation(opts) {
+  const router = useRouter();
+  if (isServer ?? router.isServer) {
+    const location = router.stores.location.get();
+    return opts?.select ? opts.select(location) : location;
+  }
+  const previousResult = (0, import_react8.useRef)(void 0);
+  return useStore(router.stores.location, (location) => {
+    const selected = opts?.select ? opts.select(location) : location;
+    if (opts?.structuralSharing ?? router.options.defaultStructuralSharing) {
+      const shared = replaceEqualDeep(previousResult.current, selected);
+      previousResult.current = shared;
+      return shared;
+    }
+    return selected;
+  });
+}
+var import_react8;
+var init_useLocation = __esm({
+  "node_modules/@tanstack/react-router/dist/esm/useLocation.js"() {
+    "use client";
+    init_useRouter();
+    init_esm2();
+    import_react8 = __toESM(require_react(), 1);
+    init_esm4();
+    init_server();
+  }
+});
+
 // node_modules/@tanstack/react-router/dist/esm/Asset.js
 function Asset(asset) {
   const { attrs, children, nonce } = asset;
@@ -12926,20 +12956,20 @@ var init_headContentUtils = __esm({
 function HeadContent(props) {
   const tags = useTags(props.assetCrossOrigin);
   const nonce = useRouter().options.ssr?.nonce;
-  return /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_jsx_runtime14.Fragment, { children: tags.map((tag) => /* @__PURE__ */ (0, import_react8.createElement)(Asset, {
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_jsx_runtime14.Fragment, { children: tags.map((tag) => /* @__PURE__ */ (0, import_react9.createElement)(Asset, {
     ...tag,
     key: `tsr-meta-${JSON.stringify(tag)}`,
     nonce
   })) });
 }
-var import_react8, import_jsx_runtime14;
+var import_react9, import_jsx_runtime14;
 var init_HeadContent = __esm({
   "node_modules/@tanstack/react-router/dist/esm/HeadContent.js"() {
     "use client";
     init_useRouter();
     init_Asset();
     init_headContentUtils();
-    import_react8 = __toESM(require_react(), 1);
+    import_react9 = __toESM(require_react(), 1);
     import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
   }
 });
@@ -12950,18 +12980,18 @@ function renderScripts(router, scripts, assetScripts) {
   if (router.serverSsr) serverBufferedScript = router.serverSsr.takeBufferedScripts();
   const allScripts = [...scripts, ...assetScripts];
   if (serverBufferedScript) allScripts.unshift(serverBufferedScript);
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(import_jsx_runtime15.Fragment, { children: allScripts.map((asset, i2) => /* @__PURE__ */ (0, import_react9.createElement)(Asset, {
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(import_jsx_runtime15.Fragment, { children: allScripts.map((asset, i2) => /* @__PURE__ */ (0, import_react10.createElement)(Asset, {
     ...asset,
     key: `tsr-scripts-${asset.tag}-${i2}`
   })) });
 }
-var import_react9, import_jsx_runtime15, Scripts;
+var import_react10, import_jsx_runtime15, Scripts;
 var init_Scripts = __esm({
   "node_modules/@tanstack/react-router/dist/esm/Scripts.js"() {
     init_useRouter();
     init_Asset();
     init_esm2();
-    import_react9 = __toESM(require_react(), 1);
+    import_react10 = __toESM(require_react(), 1);
     import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
     init_esm4();
     init_server();
@@ -13016,6 +13046,7 @@ var init_esm5 = __esm({
     init_Match();
     init_router2();
     init_RouterProvider();
+    init_useLocation();
     init_HeadContent();
     init_Scripts();
   }
@@ -38911,16 +38942,16 @@ var init_server4 = __esm({
   }
 });
 
-// dist/server/assets/_tanstack-start-manifest_v-BfzUVI98.js
-var tanstack_start_manifest_v_BfzUVI98_exports = {};
-__export(tanstack_start_manifest_v_BfzUVI98_exports, {
+// dist/server/assets/_tanstack-start-manifest_v-C4CfyfPa.js
+var tanstack_start_manifest_v_C4CfyfPa_exports = {};
+__export(tanstack_start_manifest_v_C4CfyfPa_exports, {
   tsrStartManifest: () => tsrStartManifest
 });
 var tsrStartManifest;
-var init_tanstack_start_manifest_v_BfzUVI98 = __esm({
-  "dist/server/assets/_tanstack-start-manifest_v-BfzUVI98.js"() {
+var init_tanstack_start_manifest_v_C4CfyfPa = __esm({
+  "dist/server/assets/_tanstack-start-manifest_v-C4CfyfPa.js"() {
     "use strict";
-    tsrStartManifest = () => ({ routes: { __root__: { filePath: "D:/Website/luxury-fashion-website/src/routes/__root.tsx", children: ["/", "/about", "/campaign", "/collections", "/lookbook"], assets: void 0, preloads: ["/assets/index-CovdkRFB.js"] }, "/": { filePath: "D:/Website/luxury-fashion-website/src/routes/index.tsx", children: void 0, assets: void 0, preloads: ["/assets/index-CqU01X8U.js", "/assets/look-1-Dhyzh_7i.js", "/assets/campaign-1-Ellwy3HQ.js", "/assets/look-2-Fd3e8rgV.js", "/assets/archive-1-BS5OIm8L.js", "/assets/archive-2-DUj8OcQ9.js", "/assets/archive-3-CILOVy6n.js", "/assets/designer-DXwmLZqJ.js"] }, "/about": { filePath: "D:/Website/luxury-fashion-website/src/routes/about.tsx", children: void 0, assets: void 0, preloads: ["/assets/about-Cdxu7fdD.js", "/assets/look-1-Dhyzh_7i.js", "/assets/archive-1-BS5OIm8L.js", "/assets/designer-DXwmLZqJ.js", "/assets/archive-3-CILOVy6n.js"] }, "/campaign": { filePath: "D:/Website/luxury-fashion-website/src/routes/campaign.tsx", children: void 0, assets: void 0, preloads: ["/assets/campaign-CccDqG0x.js", "/assets/look-1-Dhyzh_7i.js", "/assets/campaign-1-Ellwy3HQ.js", "/assets/archive-2-DUj8OcQ9.js"] }, "/collections": { filePath: "D:/Website/luxury-fashion-website/src/routes/collections.tsx", children: void 0, assets: void 0, preloads: ["/assets/collections-CZl4DcSg.js", "/assets/look-1-Dhyzh_7i.js", "/assets/campaign-1-Ellwy3HQ.js", "/assets/look-2-Fd3e8rgV.js", "/assets/archive-1-BS5OIm8L.js", "/assets/archive-2-DUj8OcQ9.js", "/assets/archive-3-CILOVy6n.js"] }, "/lookbook": { filePath: "D:/Website/luxury-fashion-website/src/routes/lookbook.tsx", children: void 0, assets: void 0, preloads: ["/assets/lookbook-mWDlmtlT.js", "/assets/look-1-Dhyzh_7i.js", "/assets/look-2-Fd3e8rgV.js", "/assets/campaign-1-Ellwy3HQ.js", "/assets/archive-1-BS5OIm8L.js"] } }, clientEntry: "/assets/index-CovdkRFB.js" });
+    tsrStartManifest = () => ({ routes: { __root__: { filePath: "D:/Website/luxury-fashion-website/src/routes/__root.tsx", children: ["/", "/about", "/campaign", "/collections", "/lookbook"], assets: void 0, preloads: ["/assets/index-D0WPshqf.js"] }, "/": { filePath: "D:/Website/luxury-fashion-website/src/routes/index.tsx", children: void 0, assets: void 0, preloads: ["/assets/index-Cygc_HnN.js", "/assets/look-1-BaH-qP5v.js", "/assets/campaign-1-Ellwy3HQ.js", "/assets/look-2-Fd3e8rgV.js", "/assets/archive-1-BS5OIm8L.js", "/assets/archive-2-DUj8OcQ9.js", "/assets/archive-3-CILOVy6n.js", "/assets/designer-DXwmLZqJ.js"] }, "/about": { filePath: "D:/Website/luxury-fashion-website/src/routes/about.tsx", children: void 0, assets: void 0, preloads: ["/assets/about-bCzyMAVO.js", "/assets/look-1-BaH-qP5v.js", "/assets/archive-1-BS5OIm8L.js", "/assets/designer-DXwmLZqJ.js", "/assets/archive-3-CILOVy6n.js"] }, "/campaign": { filePath: "D:/Website/luxury-fashion-website/src/routes/campaign.tsx", children: void 0, assets: void 0, preloads: ["/assets/campaign-DDOe17aH.js", "/assets/look-1-BaH-qP5v.js", "/assets/campaign-1-Ellwy3HQ.js", "/assets/archive-2-DUj8OcQ9.js"] }, "/collections": { filePath: "D:/Website/luxury-fashion-website/src/routes/collections.tsx", children: void 0, assets: void 0, preloads: ["/assets/collections-BBKqscGX.js", "/assets/look-1-BaH-qP5v.js", "/assets/campaign-1-Ellwy3HQ.js", "/assets/look-2-Fd3e8rgV.js", "/assets/archive-1-BS5OIm8L.js", "/assets/archive-2-DUj8OcQ9.js", "/assets/archive-3-CILOVy6n.js"] }, "/lookbook": { filePath: "D:/Website/luxury-fashion-website/src/routes/lookbook.tsx", children: void 0, assets: void 0, preloads: ["/assets/lookbook-CgD421wz.js", "/assets/look-1-BaH-qP5v.js", "/assets/look-2-Fd3e8rgV.js", "/assets/campaign-1-Ellwy3HQ.js", "/assets/archive-1-BS5OIm8L.js"] } }, clientEntry: "/assets/index-D0WPshqf.js" });
   }
 });
 
@@ -65439,11 +65470,15 @@ var require_lucide_react = __commonJS({
   }
 });
 
-// dist/server/assets/look-1-BULFp6zP.js
+// dist/server/assets/look-1-C5B0HtVo.js
 function Header() {
-  const [scrolled, setScrolled] = (0, import_react10.useState)(false);
-  const [open, setOpen] = (0, import_react10.useState)(false);
-  (0, import_react10.useEffect)(() => {
+  const [scrolled, setScrolled] = (0, import_react11.useState)(false);
+  const [open, setOpen] = (0, import_react11.useState)(false);
+  const location = useLocation();
+  const pathname = location.pathname;
+  const isDarkNavbarText = pathname.startsWith("/about") || pathname.startsWith("/collections") || pathname.startsWith("/lookbook");
+  const textColorClass = isDarkNavbarText || scrolled ? "text-ink" : "text-white";
+  (0, import_react11.useEffect)(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -65457,7 +65492,7 @@ function Header() {
         style: {
           backgroundColor: scrolled ? "color-mix(in oklab, var(--color-paper) 92%, transparent)" : "transparent"
         },
-        children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: `flex items-center justify-between px-5 md:px-12 py-5 hairline border-b border-transparent transition-colors duration-300 ${scrolled ? "text-ink" : "text-white"}`, children: [
+        children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: `flex items-center justify-between px-5 md:px-12 py-5 hairline border-b border-transparent transition-colors duration-300 ${textColorClass}`, children: [
           /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Link, { to: "/", className: "font-display font-black tracking-[0.2em] text-[13px] uppercase", children: "L'ALLURE" }),
           /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("nav", { className: "hidden md:flex items-center gap-10", children: links.map((l2) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Link, { to: l2.to, className: "nav-link", children: l2.label }, l2.to)) }),
           /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "hidden md:flex items-center gap-8", children: [
@@ -65580,13 +65615,13 @@ function Layout({ children }) {
     /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Footer, {})
   ] });
 }
-var import_jsx_runtime17, import_react10, import_lucide_react, links, look1;
-var init_look_1_BULFp6zP = __esm({
-  "dist/server/assets/look-1-BULFp6zP.js"() {
+var import_jsx_runtime17, import_react11, import_lucide_react, links, look1;
+var init_look_1_C5B0HtVo = __esm({
+  "dist/server/assets/look-1-C5B0HtVo.js"() {
     "use strict";
     import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
     init_esm5();
-    import_react10 = __toESM(require_react(), 1);
+    import_react11 = __toESM(require_react(), 1);
     import_lucide_react = __toESM(require_lucide_react(), 1);
     links = [
       { to: "/about", label: "About" },
@@ -65627,16 +65662,16 @@ var init_archive_1_55uDPAs = __esm({
   }
 });
 
-// dist/server/assets/lookbook-BM1oc9jd.js
-var lookbook_BM1oc9jd_exports = {};
-__export(lookbook_BM1oc9jd_exports, {
+// dist/server/assets/lookbook-DP9aeBsm.js
+var lookbook_DP9aeBsm_exports = {};
+__export(lookbook_DP9aeBsm_exports, {
   component: () => Lookbook
 });
 function LookbookViewer() {
-  const [i2, setI] = (0, import_react11.useState)(0);
+  const [i2, setI] = (0, import_react12.useState)(0);
   const next = () => setI((p3) => (p3 + 1) % looks.length);
   const prev = () => setI((p3) => (p3 - 1 + looks.length) % looks.length);
-  (0, import_react11.useEffect)(() => {
+  (0, import_react12.useEffect)(() => {
     const onKey = (e) => {
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
@@ -65703,13 +65738,13 @@ function LookbookViewer() {
 function Lookbook() {
   return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Layout, { children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(LookbookViewer, {}) });
 }
-var import_jsx_runtime18, import_react11, looks;
-var init_lookbook_BM1oc9jd = __esm({
-  "dist/server/assets/lookbook-BM1oc9jd.js"() {
+var import_jsx_runtime18, import_react12, looks;
+var init_lookbook_DP9aeBsm = __esm({
+  "dist/server/assets/lookbook-DP9aeBsm.js"() {
     "use strict";
     import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
-    init_look_1_BULFp6zP();
-    import_react11 = __toESM(require_react(), 1);
+    init_look_1_C5B0HtVo();
+    import_react12 = __toESM(require_react(), 1);
     init_look_2_Ce_kSYhm();
     init_campaign_1_Bndqws24();
     init_archive_1_55uDPAs();
@@ -65742,9 +65777,9 @@ var init_archive_3_B5dnukZF = __esm({
   }
 });
 
-// dist/server/assets/collections-CkaTzSfi.js
-var collections_CkaTzSfi_exports = {};
-__export(collections_CkaTzSfi_exports, {
+// dist/server/assets/collections-Bwmvx_eW.js
+var collections_Bwmvx_eW_exports = {};
+__export(collections_Bwmvx_eW_exports, {
   component: () => Collections
 });
 function CollectionsHero() {
@@ -65754,7 +65789,7 @@ function CollectionsHero() {
   ] });
 }
 function ArchiveGrid() {
-  const [active, setActive] = (0, import_react12.useState)("All");
+  const [active, setActive] = (0, import_react13.useState)("All");
   const visible = items.filter((i2) => {
     if (active === "All") return true;
     return String(i2.year) === active || i2.type === active;
@@ -65801,13 +65836,13 @@ function Collections() {
     /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ArchiveGrid, {})
   ] });
 }
-var import_jsx_runtime19, import_react12, items, filters;
-var init_collections_CkaTzSfi = __esm({
-  "dist/server/assets/collections-CkaTzSfi.js"() {
+var import_jsx_runtime19, import_react13, items, filters;
+var init_collections_Bwmvx_eW = __esm({
+  "dist/server/assets/collections-Bwmvx_eW.js"() {
     "use strict";
     import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
-    init_look_1_BULFp6zP();
-    import_react12 = __toESM(require_react(), 1);
+    init_look_1_C5B0HtVo();
+    import_react13 = __toESM(require_react(), 1);
     init_esm5();
     init_campaign_1_Bndqws24();
     init_look_2_Ce_kSYhm();
@@ -65828,9 +65863,9 @@ var init_collections_CkaTzSfi = __esm({
   }
 });
 
-// dist/server/assets/campaign-DApgD22S.js
-var campaign_DApgD22S_exports = {};
-__export(campaign_DApgD22S_exports, {
+// dist/server/assets/campaign-a-Ym9rJe.js
+var campaign_a_Ym9rJe_exports = {};
+__export(campaign_a_Ym9rJe_exports, {
   component: () => CampaignPage
 });
 function CampaignHero() {
@@ -65960,16 +65995,16 @@ function CampaignPage() {
     /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(RelatedCampaigns, {})
   ] });
 }
-var import_jsx_runtime20, import_react13;
-var init_campaign_DApgD22S = __esm({
-  "dist/server/assets/campaign-DApgD22S.js"() {
+var import_jsx_runtime20, import_react14;
+var init_campaign_a_Ym9rJe = __esm({
+  "dist/server/assets/campaign-a-Ym9rJe.js"() {
     "use strict";
     import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
-    init_look_1_BULFp6zP();
+    init_look_1_C5B0HtVo();
     init_campaign_1_Bndqws24();
     init_archive_2_CwfB6XBh();
     init_esm5();
-    import_react13 = __toESM(require_react(), 1);
+    import_react14 = __toESM(require_react(), 1);
   }
 });
 
@@ -65982,9 +66017,9 @@ var init_designer_CzTNZCVg = __esm({
   }
 });
 
-// dist/server/assets/about-BgL3dRJ0.js
-var about_BgL3dRJ0_exports = {};
-__export(about_BgL3dRJ0_exports, {
+// dist/server/assets/about-DhmreMiT.js
+var about_DhmreMiT_exports = {};
+__export(about_DhmreMiT_exports, {
   component: () => About
 });
 function AboutHero() {
@@ -66113,16 +66148,16 @@ function About() {
     /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ContactSection, {})
   ] });
 }
-var import_jsx_runtime21, import_react14, timeline;
-var init_about_BgL3dRJ0 = __esm({
-  "dist/server/assets/about-BgL3dRJ0.js"() {
+var import_jsx_runtime21, import_react15, timeline;
+var init_about_DhmreMiT = __esm({
+  "dist/server/assets/about-DhmreMiT.js"() {
     "use strict";
     import_jsx_runtime21 = __toESM(require_jsx_runtime(), 1);
-    init_look_1_BULFp6zP();
+    init_look_1_C5B0HtVo();
     init_archive_1_55uDPAs();
     init_designer_CzTNZCVg();
     init_archive_3_B5dnukZF();
-    import_react14 = __toESM(require_react(), 1);
+    import_react15 = __toESM(require_react(), 1);
     timeline = [
       ["1999", "Aur\xE9lien L'Allure apprentices at a Paris atelier."],
       ["2007", "Founds L'Allure from a single studio in the Marais."],
@@ -66134,9 +66169,9 @@ var init_about_BgL3dRJ0 = __esm({
   }
 });
 
-// dist/server/assets/index-5pO93_Me.js
-var index_5pO93_Me_exports = {};
-__export(index_5pO93_Me_exports, {
+// dist/server/assets/index-CCLYzYx9.js
+var index_CCLYzYx9_exports = {};
+__export(index_CCLYzYx9_exports, {
   component: () => Index
 });
 function HeroSection() {
@@ -66386,12 +66421,12 @@ function Index() {
     /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(NewsletterSection, {})
   ] });
 }
-var import_jsx_runtime22, import_react15, hero;
-var init_index_5pO93_Me = __esm({
-  "dist/server/assets/index-5pO93_Me.js"() {
+var import_jsx_runtime22, import_react16, hero;
+var init_index_CCLYzYx9 = __esm({
+  "dist/server/assets/index-CCLYzYx9.js"() {
     "use strict";
     import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
-    init_look_1_BULFp6zP();
+    init_look_1_C5B0HtVo();
     init_esm5();
     init_campaign_1_Bndqws24();
     init_look_2_Ce_kSYhm();
@@ -66399,14 +66434,14 @@ var init_index_5pO93_Me = __esm({
     init_archive_2_CwfB6XBh();
     init_archive_3_B5dnukZF();
     init_designer_CzTNZCVg();
-    import_react15 = __toESM(require_react(), 1);
+    import_react16 = __toESM(require_react(), 1);
     hero = "/assets/hero-new-BoxF-sJw.png";
   }
 });
 
-// dist/server/assets/router-DiJTuAp2.js
-var router_DiJTuAp2_exports = {};
-__export(router_DiJTuAp2_exports, {
+// dist/server/assets/router-C3ka8V0J.js
+var router_C3ka8V0J_exports = {};
+__export(router_C3ka8V0J_exports, {
   getRouter: () => getRouter
 });
 function NotFoundComponent() {
@@ -66467,8 +66502,8 @@ function RootComponent() {
   return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Outlet, {}) });
 }
 var import_jsx_runtime23, appCss, Route$5, $$splitComponentImporter$4, Route$4, $$splitComponentImporter$3, Route$3, $$splitComponentImporter$2, Route$2, $$splitComponentImporter$1, Route$1, $$splitComponentImporter, Route2, LookbookRoute, CollectionsRoute, CampaignRoute, AboutRoute, IndexRoute, rootRouteChildren, routeTree, getRouter;
-var init_router_DiJTuAp2 = __esm({
-  "dist/server/assets/router-DiJTuAp2.js"() {
+var init_router_C3ka8V0J = __esm({
+  "dist/server/assets/router-C3ka8V0J.js"() {
     "use strict";
     init_modern2();
     init_esm5();
@@ -66499,7 +66534,7 @@ var init_router_DiJTuAp2 = __esm({
       notFoundComponent: NotFoundComponent,
       errorComponent: ErrorComponent2
     });
-    $$splitComponentImporter$4 = () => Promise.resolve().then(() => (init_lookbook_BM1oc9jd(), lookbook_BM1oc9jd_exports));
+    $$splitComponentImporter$4 = () => Promise.resolve().then(() => (init_lookbook_DP9aeBsm(), lookbook_DP9aeBsm_exports));
     Route$4 = createFileRoute("/lookbook")({
       head: () => ({
         meta: [{
@@ -66517,7 +66552,7 @@ var init_router_DiJTuAp2 = __esm({
       }),
       component: lazyRouteComponent($$splitComponentImporter$4, "component")
     });
-    $$splitComponentImporter$3 = () => Promise.resolve().then(() => (init_collections_CkaTzSfi(), collections_CkaTzSfi_exports));
+    $$splitComponentImporter$3 = () => Promise.resolve().then(() => (init_collections_Bwmvx_eW(), collections_Bwmvx_eW_exports));
     Route$3 = createFileRoute("/collections")({
       head: () => ({
         meta: [{
@@ -66535,7 +66570,7 @@ var init_router_DiJTuAp2 = __esm({
       }),
       component: lazyRouteComponent($$splitComponentImporter$3, "component")
     });
-    $$splitComponentImporter$2 = () => Promise.resolve().then(() => (init_campaign_DApgD22S(), campaign_DApgD22S_exports));
+    $$splitComponentImporter$2 = () => Promise.resolve().then(() => (init_campaign_a_Ym9rJe(), campaign_a_Ym9rJe_exports));
     Route$2 = createFileRoute("/campaign")({
       head: () => ({
         meta: [{
@@ -66553,7 +66588,7 @@ var init_router_DiJTuAp2 = __esm({
       }),
       component: lazyRouteComponent($$splitComponentImporter$2, "component")
     });
-    $$splitComponentImporter$1 = () => Promise.resolve().then(() => (init_about_BgL3dRJ0(), about_BgL3dRJ0_exports));
+    $$splitComponentImporter$1 = () => Promise.resolve().then(() => (init_about_DhmreMiT(), about_DhmreMiT_exports));
     Route$1 = createFileRoute("/about")({
       head: () => ({
         meta: [{
@@ -66571,7 +66606,7 @@ var init_router_DiJTuAp2 = __esm({
       }),
       component: lazyRouteComponent($$splitComponentImporter$1, "component")
     });
-    $$splitComponentImporter = () => Promise.resolve().then(() => (init_index_5pO93_Me(), index_5pO93_Me_exports));
+    $$splitComponentImporter = () => Promise.resolve().then(() => (init_index_CCLYzYx9(), index_CCLYzYx9_exports));
     Route2 = createFileRoute("/")({
       head: () => ({
         meta: [{
@@ -66724,9 +66759,9 @@ var init_tanstack_start_plugin_adapters_Cwee5PKy = __esm({
   }
 });
 
-// dist/server/assets/server-FPcNt2WO.js
-var server_FPcNt2WO_exports = {};
-__export(server_FPcNt2WO_exports, {
+// dist/server/assets/server-D_oXz1J_.js
+var server_D_oXz1J_exports = {};
+__export(server_D_oXz1J_exports, {
   createServerEntry: () => createServerEntry,
   default: () => server_default
 });
@@ -66784,7 +66819,7 @@ function getResponse() {
   return getH3Event().res;
 }
 async function getStartManifest(matchedRoutes) {
-  const { tsrStartManifest: tsrStartManifest2 } = await Promise.resolve().then(() => (init_tanstack_start_manifest_v_BfzUVI98(), tanstack_start_manifest_v_BfzUVI98_exports));
+  const { tsrStartManifest: tsrStartManifest2 } = await Promise.resolve().then(() => (init_tanstack_start_manifest_v_C4CfyfPa(), tanstack_start_manifest_v_C4CfyfPa_exports));
   const startManifest = tsrStartManifest2();
   const rootRoute = startManifest.routes[rootRouteId] = startManifest.routes[rootRouteId] || {};
   rootRoute.assets = rootRoute.assets || [];
@@ -67153,7 +67188,7 @@ function getStartResponseHeaders(opts) {
 }
 async function loadEntries() {
   const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-    Promise.resolve().then(() => (init_router_DiJTuAp2(), router_DiJTuAp2_exports)),
+    Promise.resolve().then(() => (init_router_C3ka8V0J(), router_C3ka8V0J_exports)),
     Promise.resolve().then(() => (init_start_D4mdwD77(), start_D4mdwD77_exports)),
     Promise.resolve().then(() => (init_tanstack_start_plugin_adapters_Cwee5PKy(), tanstack_start_plugin_adapters_Cwee5PKy_exports))
   ]);
@@ -67464,9 +67499,9 @@ function createServerEntry(entry) {
     return await entry.fetch(...args);
   } };
 }
-var import_react16, import_jsx_runtime24, defaultStreamHandler, GLOBAL_EVENT_STORAGE_KEY, globalObj$1, eventStorage, HEADERS, manifest, TSS_FORMDATA_CONTEXT, TSS_SERVER_FUNCTION, X_TSS_SERIALIZED, X_TSS_RAW_RESPONSE, TSS_CONTENT_TYPE_FRAMED, FrameType, FRAME_HEADER_SIZE, TSS_CONTENT_TYPE_FRAMED_VERSIONED, GLOBAL_STORAGE_KEY, globalObj, startStorage, getStartOptions, textEncoder2, EMPTY_PAYLOAD, serovalPlugins, FORM_DATA_CONTENT_TYPES, MAX_PAYLOAD_SIZE, handleServerAction, ServerFunctionSerializationAdapter, entriesPromise, baseManifestPromise, cachedFinalManifestPromise, ROUTER_BASEPATH, SERVER_FN_BASE, IS_PRERENDERING, IS_SHELL_ENV, ERR_NO_RESPONSE, ERR_NO_DEFER, fetch2, server_default;
-var init_server_FPcNt2WO = __esm({
-  "dist/server/assets/server-FPcNt2WO.js"() {
+var import_react17, import_jsx_runtime24, defaultStreamHandler, GLOBAL_EVENT_STORAGE_KEY, globalObj$1, eventStorage, HEADERS, manifest, TSS_FORMDATA_CONTEXT, TSS_SERVER_FUNCTION, X_TSS_SERIALIZED, X_TSS_RAW_RESPONSE, TSS_CONTENT_TYPE_FRAMED, FrameType, FRAME_HEADER_SIZE, TSS_CONTENT_TYPE_FRAMED_VERSIONED, GLOBAL_STORAGE_KEY, globalObj, startStorage, getStartOptions, textEncoder2, EMPTY_PAYLOAD, serovalPlugins, FORM_DATA_CONTENT_TYPES, MAX_PAYLOAD_SIZE, handleServerAction, ServerFunctionSerializationAdapter, entriesPromise, baseManifestPromise, cachedFinalManifestPromise, ROUTER_BASEPATH, SERVER_FN_BASE, IS_PRERENDERING, IS_SHELL_ENV, ERR_NO_RESPONSE, ERR_NO_DEFER, fetch2, server_default;
+var init_server_D_oXz1J = __esm({
+  "dist/server/assets/server-D_oXz1J_.js"() {
     "use strict";
     init_node2();
     init_esm2();
@@ -67474,7 +67509,7 @@ var init_server_FPcNt2WO = __esm({
     init_esm();
     init_client();
     init_server2();
-    import_react16 = __toESM(require_react(), 1);
+    import_react17 = __toESM(require_react(), 1);
     init_esm5();
     import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
     init_server4();
@@ -67783,7 +67818,7 @@ function renderErrorPage() {
 }
 async function getServerEntry() {
   if (!serverEntryPromise) {
-    serverEntryPromise = Promise.resolve().then(() => (init_server_FPcNt2WO(), server_FPcNt2WO_exports)).then(
+    serverEntryPromise = Promise.resolve().then(() => (init_server_D_oXz1J(), server_D_oXz1J_exports)).then(
       (m3) => m3.default ?? m3
     );
   }
