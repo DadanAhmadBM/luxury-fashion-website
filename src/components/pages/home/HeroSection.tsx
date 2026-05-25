@@ -8,7 +8,7 @@ export function HeroSection() {
         alt="Editorial cover"
         width={1280}
         height={1600}
-        className="absolute inset-0 h-full w-full object-cover object-[center_15%]"
+        className="absolute inset-0 h-full w-full object-cover object-[center_5%]"
       />
       <div className="absolute inset-0 bg-ink/30" />
       
