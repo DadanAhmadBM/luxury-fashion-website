@@ -43,7 +43,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-16 pt-6 border-t border-paper/15 flex justify-between text-[10px] tracking-[0.2em] uppercase text-paper/60">
-          <span>© 2026 L'Allure</span>
+          <span>© 2026 L'Allure · All Rights Reserved · Made by Movement.</span>
           <span>Privacy · Terms</span>
         </div>
       </div>
